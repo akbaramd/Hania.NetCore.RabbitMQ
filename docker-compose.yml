@@ -1,0 +1,28 @@
+version: '3.7'
+
+
+services:
+  hania.netcore.rabbitmq.sample:
+    image: ${DOCKER_REGISTRY-}hanianetcorerabbitmqsample
+    networks:
+            - tst
+    build:
+      context: .
+      dockerfile: Hania.NetCore.Rmq.Sample/Dockerfile
+  rabbitmq:
+        image: rabbitmq:3-management
+        container_name: rabbitmq_hanianetcorerabbitmqsample
+        networks:
+            - tst
+        ports:
+            - 5672:5672
+            - 15672:15672
+            - 15692:15692
+        volumes: 
+            - rabbitmq_test_data:/var/lib/rabbitmq
+volumes:
+    rabbitmq_test_data:
+
+networks:
+  tst:
+    name: tst-network
