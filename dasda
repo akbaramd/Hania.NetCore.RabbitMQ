@@ -1,0 +1,36 @@
+[33mcommit 70ca5c399520c175d005ce7c202f64911c918f14[m[33m ([m[1;36mHEAD -> [m[1;32mtest[m[33m, [m[1;31morigin/test[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Akbar Ahmadi Saray <akbarsafari00@gmail.com>
+Date:   Tue May 11 16:19:27 2021 +0430
+
+    Delete Hania.NetCore.Rmq directory
+
+[33mcommit 568d70216c1a1f8f129e814dc282c7df0cba02ec[m
+Merge: e84897c 5c73e06
+Author: Akbar Ahmadi Saray <akbarahmadi@utechia.com>
+Date:   Tue May 11 16:18:40 2021 +0430
+
+    Merge branch 'main' of https://github.com/Akbarsafari00/Hania.NetCore.RabbitMQ into main
+
+[33mcommit e84897c2b5cb8411ba57945ac301768cf2ab7175[m
+Author: Akbar Ahmadi Saray <akbarahmadi@utechia.com>
+Date:   Tue May 11 16:17:28 2021 +0430
+
+    init
+
+[33mcommit 36705f3ed2428454f6842347b11b0699e7af9d93[m
+Author: Akbar Ahmadi Saray <akbarahmadi@utechia.com>
+Date:   Tue May 11 16:16:03 2021 +0430
+
+    gitignore
+
+[33mcommit 5c73e06414b0adeac99087b5b03a2a7534092430[m
+Author: Akbar Ahmadi Saray <akbarsafari00@gmail.com>
+Date:   Tue May 11 16:14:15 2021 +0430
+
+    Create README.md
+
+[33mcommit 87729953b3561a8b263f5edf061dd9f73543004f[m
+Author: Akbar Ahmadi Saray <akbarahmadi@utechia.com>
+Date:   Tue May 11 16:13:29 2021 +0430
+
+    first commit

@@ -1,6 +1,5 @@
 using Hania.NetCore.RabbitMQ.Extensions;
 using Hania.NetCore.RabbitMQ.Sample.Consumers;
-using Hania.NetCore.RabbitMQ.Sample.HostedServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
