@@ -1,4 +1,4 @@
-https://raw.githubusercontent.com/Akbarsafari00/Hania.NetCore.RabbitMQ/main/Hania.NetCore.Rmq.Sample/Startup.cs
+https://github.com/Akbarsafari00/Hania.NetCore.RabbitMQ/blob/3c8a65ce19003ef4108863bbd91c0b240fada661/Hania.NetCore.Rmq.Sample/Startup.cs#L1-L59
 # Hania.NetCore.RabbitMQ
 
 [![Build status](https://ci.appveyor.com/api/projects/status/q261l3sbokafmx1o/branch/master?svg=true)](https://www.nuget.org/packages/Hania.AutoIncluder/)
