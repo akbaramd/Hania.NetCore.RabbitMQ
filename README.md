@@ -1,4 +1,4 @@
-https://github.com/Akbarsafari00/Hania.NetCore.RabbitMQ/blob/3c8a65ce19003ef4108863bbd91c0b240fada661/Hania.NetCore.Rmq.Sample/Startup.cs#L1-L59
+
 
 # Hania.NetCore.RabbitMQ
 
