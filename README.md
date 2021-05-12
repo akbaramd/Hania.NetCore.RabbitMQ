@@ -104,7 +104,7 @@ using System.Threading.Tasks;
 
 namespace Hania.NetCore.RabbitMQ.Sample.Consumers
 {
-    [Consumer(Exchange = "TestETopic", Queue = "TestQ", BindingKey ="test.*", ExchangeType = ExchangeType.Topic ,AutoDelete =true)]
+    [Consumer(Exchange = "TopicExchange", Queue = "TopicQueue", BindingKey ="test.*", ExchangeType = ExchangeType.Topic ,AutoDelete =true)]
     public class TestConsumer : IConsumer<TestModel>
     {
 
@@ -162,7 +162,7 @@ namespace Hania.NetCore.RabbitMQ.Sample.Controllers
         [HttpPost]
         public ActionResult Post()
         {
-            _rabbitMQBus.Publish(new TestModel("akbar ahmadi saray"),"TopicQueue","TestE","test.sayhello",true,true);
+            _rabbitMQBus.Publish(new TestModel("akbar ahmadi saray"),"TopicQueue","TopicExchange","test.sayhello",true,true);
             return Ok();
         }
     }
