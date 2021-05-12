@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Hania.NetCore.RabbitMQ.Sample.Consumers
 {
-    [Consumer(Exchange = "TestDirectExchange", Queue = "TestDirectQueue", ExchangeType = ExchangeType.Direct ,AutoDelete =true)]
-    public class TestConsumer : IConsumer<TestModel>
+    [Consumer(Exchange = "TestETopic", Queue = "TestQ", BindingKey ="test.*", ExchangeType = ExchangeType.Topic ,AutoDelete =true)]
+    public class TestTopicConsumer : IConsumer<TestModel>
     {
 
-        public TestConsumer()
+        public TestTopicConsumer()
         {
         }   
 
         public async Task Handle(TestModel model)
         {
-            Console.WriteLine($"Received :  Name is {model.FullName}");
+            Console.WriteLine($"Received From TestTopicConsumer :  Name is {model.FullName}");
         }
     }
 }
