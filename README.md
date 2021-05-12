@@ -71,8 +71,8 @@ public class Startup
     {
         services.AddHaniaRabbitMQ(Configuratio);
         
-        // Or : you can set spesific type to get this type assembly : 
-        // Exmple: 
+        // Oo you can set spesific type to get this type assembly
+        // exmple: 
         // services.AddHaniaRabbitMQ(Configuration,typeof(TestConsumer));
     }
 }
