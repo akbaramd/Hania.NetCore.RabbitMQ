@@ -69,7 +69,8 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddHaniaRabbitMQ(Configuration,typeof(TestConsumer).GetTypeInfo().Assembly);
+        services.AddHaniaRabbitMQ(Configuratio);
+        // services.AddHaniaRabbitMQ(Configuration,typeof(TestConsumer));
     }
 }
 ```

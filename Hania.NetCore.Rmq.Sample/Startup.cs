@@ -25,23 +25,25 @@ namespace Hania.NetCore.RabbitMQ.Sample
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHaniaRabbitMQ(Configuration,typeof(TestConsumer).GetTypeInfo().Assembly);
-
-            //services.AddHostedService<ConsumerHostedService>();
+            services.AddLogging(config =>
+            {
+                config.AddDebug();
+                config.AddConsole();
+                //etc
+            });
+            services.AddHaniaRabbitMQ(Configuration);
+            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

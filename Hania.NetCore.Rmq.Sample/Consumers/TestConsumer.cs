@@ -15,16 +15,13 @@ namespace Hania.NetCore.RabbitMQ.Sample.Consumers
     public class TestConsumer : IConsumer<TestModel>
     {
 
-        ILogger _logger;
-
-        public TestConsumer(ILogger logger)
+        public TestConsumer()
         {
-            _logger = logger;
-        }
+        }   
 
         public async Task Handle(TestModel model)
         {
-            _logger.Log(LogLevel.Trace,$"Received :  Name is {model.FullName}");
+            Console.WriteLine($"Received :  Name is {model.FullName}");
         }
     }
 }

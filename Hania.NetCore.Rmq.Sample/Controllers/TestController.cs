@@ -35,5 +35,19 @@ namespace Hania.NetCore.RabbitMQ.Sample.Controllers
             _rabbitMQPublisher.Publish(new TestModel("akbar ahmadi saray"),options);
             return Ok();
         }
+
+        [HttpGet]
+        public ActionResult GET()
+        {
+            var options = new PublisherOptions
+            {
+                AutoDelete = true,
+                Exchange = "TestDirectExchange",
+                Queue = "TestDirectQueue",
+                ExchangeType = ExchangeType.Direct
+            };
+            _rabbitMQPublisher.Publish(new TestModel("akbar ahmadi saray"), options);
+            return Ok();
+        }
     }
 }
