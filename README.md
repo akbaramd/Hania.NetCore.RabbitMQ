@@ -70,7 +70,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddHaniaRabbitMQ(Configuratio);
+        services.AddHaniaRabbitMQ(Configuration);
         
         // or you can set spesific type to get this type assembly
         // exmple: 
