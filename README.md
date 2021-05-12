@@ -1,5 +1,4 @@
 
-
 # Hania.NetCore.RabbitMQ
 
 [![Build status](https://ci.appveyor.com/api/projects/status/q261l3sbokafmx1o/branch/master?svg=true)](https://www.nuget.org/packages/Hania.AutoIncluder/)
@@ -105,7 +104,7 @@ using System.Threading.Tasks;
 
 namespace Hania.NetCore.RabbitMQ.Sample.Consumers
 {
-    [Consumer(Exchange = "TestDirectExchange", Queue = "TestDirectQueue", ExchangeType = ExchangeType.Direct ,AutoDelete =true)]
+    [Consumer(Exchange = "TestETopic", Queue = "TestQ", BindingKey ="test.*", ExchangeType = ExchangeType.Topic ,AutoDelete =true)]
     public class TestConsumer : IConsumer<TestModel>
     {
 
@@ -152,25 +151,18 @@ namespace Hania.NetCore.RabbitMQ.Sample.Controllers
     {
       
         private readonly ILogger<TestController> _logger;
-        private readonly IRabbitMQPublisher _rabbitMQPublisher;
+        private readonly IRabbitMQBus _rabbitMQBus;
 
-        public TestController(ILogger<TestController> logger, IRabbitMQPublisher rabbitMQPublisher)
+        public TestController(ILogger<TestController> logger, IRabbitMQBus rabbitMQBus)
         {
             _logger = logger;
-            _rabbitMQPublisher = rabbitMQPublisher;
+            _rabbitMQBus = rabbitMQBus;
         }
 
         [HttpPost]
         public ActionResult Post()
         {
-            var options = new PublisherOptions
-                {
-                AutoDelete = true,
-                    Exchange = "TestDirectExchange",
-                    Queue = "TestDirectQueue",
-                    ExchangeType = ExchangeType.Direct
-                };
-            _rabbitMQPublisher.Publish(new TestModel("akbar ahmadi saray"),options);
+            _rabbitMQBus.Publish(new TestModel("akbar ahmadi saray"),"TopicQueue","TestE","test.sayhello",true,true);
             return Ok();
         }
     }
