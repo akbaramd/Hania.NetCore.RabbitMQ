@@ -33,18 +33,22 @@ RabbitMQ is a messaging broker. It accepts messages from publishers, routes them
 Consumers consume from queues. In order to consume messages there has to be a queue. When a new consumer is added, assuming there are already messages ready in the queue, deliveries will start immediately.
 
 ### Initialize RMQ Client
-1 - First of all you need to add `RabbitMqSetting` section to `appsettings.json` file:
+1 - First of all you need to add `hania` => `rabbitmq` section to `appsettings.json` file:
 
 ```json
 {
-  "RabbitMqSetting": {
-    "Host": "amqp://guest:guest@rabbitmq:5672",
-    "Queue": "test",
-    "Exchange": "test",
-    "ExchangeType": "fanout",
-    "Durable": true,
-    "AutoDelete": false
+  "hania": {
+    "rabbitmq": {
+      "Host": "amqp://guest:guest@rabbitmq:5672",
+      "Queue": "test",
+      "Name": "RMQTest",
+      "Exchange": "test",
+      "ExchangeType": "fanout",
+      "Durable": true,
+      "AutoDelete": true
+    }
   }
+}
 ```
 The only **Required** field to set up the client is **Host** field. The other fields are intended for quantifying client defaults
 
@@ -70,11 +74,11 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddHaniaRabbitMQ(Configuration);
+        services.AddHaniaRabbitMQ();
         
         // or you can set spesific type to get this type assembly
         // exmple: 
-        // services.AddHaniaRabbitMQ(Configuration,typeof(TestConsumer));
+        // services.AddHaniaRabbitMQ(typeof(TestConsumer));
     }
 }
 ```
@@ -124,6 +128,65 @@ namespace Hania.NetCore.RabbitMQ.Sample.Consumers
 
 
 ```
+#### DirectConsumer
+```csharp
+using Hania.NetCore.RabbitMQ.Abstracts;
+using Hania.NetCore.RabbitMQ.Attributes;
+using Hania.NetCore.RabbitMQ.Sample.Models;
+using Hania.NetCore.RabbitMQ.Settings;
+using Microsoft.Extensions.Logging;
+using RabbitMQ.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Hania.NetCore.RabbitMQ.Sample.Consumers
+{
+    [DirectConsumer]
+    public class TestDirectConsumer : IConsumer<TestModel>
+    {
+
+        public TestDirectConsumer()
+        {
+        }   
+
+        public async Task Handle(TestModel model)
+        {
+            Console.WriteLine($"Received from TestDirectConsumer :  Name is {model.FullName}");
+        }
+    }
+}
+
+```
+
+#### TopicConsumer
+```csharp
+using Hania.NetCore.RabbitMQ.Abstracts;
+using Hania.NetCore.RabbitMQ.Attributes;
+using Hania.NetCore.RabbitMQ.Sample.Models;
+using RabbitMQ.Client;
+using System;
+using System.Threading.Tasks;
+
+namespace Hania.NetCore.RabbitMQ.Sample.Consumers
+{
+    [TopicConsumer]
+    public class TestTopicConsumer : IConsumer<TestModel>
+    {
+
+        public TestTopicConsumer()
+        {
+        }   
+
+        public async Task Handle(TestModel model)
+        {
+            Console.WriteLine($"Received From TestTopicConsumer :  Name is {model.FullName}");
+        }
+    }
+}
+
+```
 
 ### Producer
 Producers in RabbitMq sends event through the  client
@@ -160,9 +223,23 @@ namespace Hania.NetCore.RabbitMQ.Sample.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult GeneralPost()
         {
             _rabbitMQBus.Publish(new TestModel("akbar ahmadi saray"),"TopicQueue","TopicExchange","test.sayhello",true,true);
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> DirectPost()
+        {
+            await _rabbitMQBus.DirectPublish(new TestModel("akbar ahmadi"));
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> TopicPost()
+        {
+             await _rabbitMQBus.TopicPublish(new TestModel("akbar ahmadi"));
             return Ok();
         }
     }
