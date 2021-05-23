@@ -41,7 +41,7 @@ Consumers consume from queues. In order to consume messages there has to be a qu
     "rabbitmq": {
       "Host": "amqp://guest:guest@rabbitmq:5672",
       "Queue": "test",
-      "Name": "RMQTest",
+      "Namespace": "RMQTest",
       "Exchange": "test",
       "ExchangeType": "fanout",
       "Durable": true,
